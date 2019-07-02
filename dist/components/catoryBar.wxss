@@ -1,0 +1,31 @@
+
+
+.gank-list-title-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #F5F5F5;
+}
+
+.bar-title {
+    box-sizing: content-box;
+    display: inline-block;
+    color: #29ACBE;
+    padding: 30rpx;
+    font-size: 28rpx;
+    border-bottom: 4rpx solid #F5F5F5;
+}
+
+.bar-title-on {
+    box-sizing: content-box;
+    display: inline-block;
+    color: #29ACBE;
+    padding: 30rpx;
+    font-size: 28rpx;
+    border-bottom: 4rpx solid #29ACBE;
+}
+
+.top-scroll-view {
+    white-space: nowrap;
+    width: 750rpx;
+}
+

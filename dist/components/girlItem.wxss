@@ -1,0 +1,29 @@
+
+
+.gank-list-item-container {
+    display: flex;
+}
+.girl-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* border-radius: 20rpx; */
+    height: 500rpx;
+}
+
+.bottom-view {
+    display: flex;
+    justify-content: flex-start;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 10000;
+}
+
+.bottom-text {
+    font-size: 36rpx;
+    color: white;
+    font-weight: bolder;
+    padding: 14rpx;
+
+}
+

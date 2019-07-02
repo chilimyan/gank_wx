@@ -1,0 +1,85 @@
+<template>
+    <view class="gank-list-title-container">
+        
+        <scroll-view scroll-x class="top-scroll-view" >
+            <repeat for="{{catgoryList}}" index="index" item="item" key="index">
+                <text class="bar-title {{currentId == item.id ? 'bar-title-on' : ''}}" @tap="selectType({{item.id}})">{{item.name}}</text>
+            </repeat>
+        </scroll-view>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class CatgoryBar extends wepy.component {
+    props = {
+    }
+
+    data = {
+        catgoryList:[
+            {name: '全部',
+            id:'all'},
+            {name: 'iOS',
+            id:'iOS'},
+            {name: 'Android',
+            id: 'Android'},
+            {name: 'App',
+            id: 'App'},
+            {name: '前端',
+            id: '前端'},
+            {name: '拓展资源',
+            id: '拓展资源'},
+            {name: '休息视频',
+            id: '休息视频'},
+            {name: '瞎推荐',
+            id: '瞎推荐'}],
+        currentId: 'all',
+    }
+
+    onLoad() {
+        
+    }
+
+    methods = {
+      selectType(id) {
+            this.currentId = id;
+            this.$emit('select', this.currentId);
+            this.$apply();
+        }
+    }
+}
+</script>
+
+<style>
+
+.gank-list-title-container {
+    width: 100%;
+    overflow: hidden;
+    background-color: #F5F5F5;
+}
+
+.bar-title {
+    box-sizing: content-box;
+    display: inline-block;
+    color: #29ACBE;
+    padding: 30rpx;
+    font-size: 28rpx;
+    border-bottom: 4rpx solid #F5F5F5;
+}
+
+.bar-title-on {
+    box-sizing: content-box;
+    display: inline-block;
+    color: #29ACBE;
+    padding: 30rpx;
+    font-size: 28rpx;
+    border-bottom: 4rpx solid #29ACBE;
+}
+
+.top-scroll-view {
+    white-space: nowrap;
+    width: 750rpx;
+}
+
+</style>

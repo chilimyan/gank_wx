@@ -1,0 +1,151 @@
+<style lang="less">
+  
+</style>
+<template>
+  <view class="container">
+    <inaver :showBack.sync="false" :background.sync="bgColor">
+      <image class="left-image" slot="main" src="/images/lishi.png" @tap="selectDate()"></image>
+      <text class="title" slot="title">{{title}}</text>
+    </inaver>
+    <view wx:if="{{showCalendar}}" class="calendar-view" catchtouchmove="catchtouchmove">
+      <calendar></calendar>
+    </view>
+    <!-- <view class="calendar-view">
+      <calendar></calendar>
+    </view> -->
+    <view class="top-image-view" wx:if="{{topImageUrl}}">
+      <image class="top-image" src="{{topImageUrl}}" mode="aspectFill"/>
+    </view>
+    <repeat for="{{listItem}}" key="index" index="index" item="item">
+      <gankListTitleItem :gitem.sync="item" wx:if="{{item.title}}"></gankListTitleItem>
+      <repeat for="{{item}}" key="index" index="index" item="subItem" wx:if="{{!item.title}}">
+        <gankListItem :gitem.sync="subItem" :timeStr="subItem.publishedAt"></gankListItem>
+      </repeat>
+    </repeat>
+    <!-- <view wx:if="{{showCalendar}}" class="calendar-view">
+      <calendar></calendar>
+    </view> -->
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy';
+  import gankApi from '../api/gankAPI';
+  import gankListItem from '../components/gankListItem';
+  import gankListTitleItem from '../components/gankListTitleItem';
+  import inaver from '../components/inaver';
+  import calendar from '../components/calendar';
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '今日最新干货',
+      navigationStyle: 'custom'
+    }
+    components = {
+      gankListItem: gankListItem,
+      gankListTitleItem: gankListTitleItem,
+      inaver: inaver,
+      calendar: calendar,
+    }
+
+    data = {
+      listItem: [],
+      topImageUrl: null,
+      bgColor: '#29ACBE',
+      title: '今日最新干货',
+      showCalendar: false,
+    }
+
+    computed = {
+  
+    }
+
+    methods = {
+      clickDetail(index) {
+        ///受小程序限制无法打开网页
+        // this.$navigate('/pages/webview?webUrl=' + index);
+      },
+      selectDate() {
+        this.showCalendar = !this.showCalendar;
+      },
+      catchtouchmove(){}
+    }
+
+    events = {
+      
+    }
+
+    async onLoad() {
+      let self = this;
+      let data = await gankApi.getTodayNews();
+      //数据处理
+      var keys = [];
+      for (var p in data.results) {
+        if(data.results.hasOwnProperty(p)) {
+          var titleItem = {};
+          titleItem.title = p;
+          this.listItem.push(titleItem);
+          if (p === '福利') {
+            //获取头部福利照片
+            this.topImageUrl = data.results[p][0].url;
+          }
+          var items = [];
+          for (var item of data.results[p]) {
+            item.publishedAt = item.publishedAt.substring(0,10);
+            items.push(item);
+          }
+          this.listItem.push(items);
+        }
+      }
+    
+      this.$apply();
+    }
+  }
+</script>
+
+<style>
+
+.left-image{
+  margin-left: 15rpx;
+  margin-top: 25rpx;
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.calendar-view {
+  /* position: absolute;
+  z-index: 99999; */
+  /* height: 200rpx; */
+  z-index: 100;
+  position: fixed;
+  top: 160rpx;
+  background-color: white;
+}
+
+.title {
+  color: white;
+  font-size: 32rpx;
+  top: -20rpx;
+  margin-left: 140rpx;
+  position: relative;
+}
+
+.top-image-view {
+  display: flex;
+}
+
+.top-image {
+  width: 100%;
+}
+
+</style>
+

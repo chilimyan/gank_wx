@@ -1,0 +1,36 @@
+
+  <view class="container">
+    <view class="top-bar-view">
+      
+    <view class="gank-list-title-container">
+        
+        <scroll-view scroll-x class="top-scroll-view">
+            <block wx:for="{{$catgoryBar$catgoryList}}" wx:for-index="$catgoryBar$index" wx:for-item="$catgoryBar$item" wx:key="$catgoryBar$index">
+                <text class="bar-title {{$catgoryBar$currentId == $catgoryBar$item.id ? 'bar-title-on' : ''}}" bindtap="$catgoryBar$selectType" data-wpyselecttype-a="{{$catgoryBar$item.id}}">{{$catgoryBar$item.name}}</text>
+            </block>
+        </scroll-view>
+    </view>
+
+    </view>
+    <view class="list-view">
+      <block wx:for="{{listItem}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        
+    <view class="gank-list-item-container">
+        <view class="gank-list-item-left">
+            <view class="top-text-view">
+                <text class="top-context">{{item.desc}}</text>
+            </view>
+            <view class="down-text-view row">
+                <text class="down-name">{{item.who}}</text>
+                <text class="down-time">{{item.publishedAt}}</text>
+            </view>
+            <view class="line-view"/>
+        </view>
+        <view class="gank-list-item-right"  wx:if="{{item.images}}">
+            <image class="mr20" src="{{item.images[0]}}" mode="aspectFill"/>
+        </view>
+    </view>
+
+      </block>
+    </view>
+  </view>

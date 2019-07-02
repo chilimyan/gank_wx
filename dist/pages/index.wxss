@@ -1,0 +1,48 @@
+@import "./../components/calendar.wxss";
+@import "./../components/inaver.wxss";
+@import "./../components/gankListTitleItem.wxss";
+@import "./../components/gankListItem.wxss";
+
+
+.left-image{
+  margin-left: 15rpx;
+  margin-top: 25rpx;
+  width: 64rpx;
+  height: 64rpx;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+
+.calendar-view {
+  /* position: absolute;
+  z-index: 99999; */
+  /* height: 200rpx; */
+  z-index: 100;
+  position: fixed;
+  top: 160rpx;
+  background-color: white;
+}
+
+.title {
+  color: white;
+  font-size: 32rpx;
+  top: -20rpx;
+  margin-left: 140rpx;
+  position: relative;
+}
+
+.top-image-view {
+  display: flex;
+}
+
+.top-image {
+  width: 100%;
+}
+

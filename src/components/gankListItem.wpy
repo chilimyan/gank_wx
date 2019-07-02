@@ -1,0 +1,94 @@
+<template>
+    <view class="gank-list-item-container">
+        <view class="gank-list-item-left">
+            <view class="top-text-view">
+                <text class="top-context">{{gitem.desc}}</text>
+            </view>
+            <view class="down-text-view row">
+                <text class="down-name">{{gitem.who}}</text>
+                <text class="down-time">{{timeStr}}</text>
+            </view>
+            <view class="line-view"></view>
+        </view>
+        <view class="gank-list-item-right" wx:if="{{gitem.images}}">
+            <image class="mr20" src="{{gitem.images[0]}}" mode="aspectFill"/>
+        </view>
+    </view>
+</template> 
+
+<script>
+import wepy from 'wepy';
+import utils from '../utils/utils';
+
+export default class GankListItem extends wepy.component {
+    props = {
+        gitem: {},
+        timeStr: String
+    }
+    data = {
+        
+    }
+
+    onLoad() {
+    }
+}
+</script>
+
+<style>
+
+.gank-list-item-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-left: 20rpx;
+    margin-right: 20rpx;
+    margin-bottom: 10rpx;
+}
+.gank-list-item-left {
+    display: flex;
+    flex-direction: column;
+    padding-right: 10rpx;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.top-text-view {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-top: 20rpx;
+}
+
+.top-context {
+    font-size: 26rpx;
+    color: black
+}
+
+.down-name {
+    font-size: 32rpx;
+    color: black;
+    font-weight:bolder;
+}
+
+.down-time {
+    padding-left: 40rpx;
+    font-size: 32rpx;
+    color: black
+}
+
+.mr20 {
+    height: 150rpx;
+    width: 150rpx;
+    padding-top: 20rpx;
+}
+
+.line-view {
+    position: absolute;
+    height: 2rpx;
+    background-color: #F5F5F5;
+    left: 0rpx;
+    right: 0rpx;
+}
+
+</style>
+

@@ -1,0 +1,42 @@
+<style lang="less">
+  
+</style>
+<template>
+  <view class="container">
+    
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '今日最新干货'
+    }
+    components = {
+  
+    }
+
+    data = {
+      
+    }
+
+    computed = {
+  
+    }
+
+    methods = {
+      
+    }
+
+    events = {
+      
+    }
+
+    onLoad() {
+      let self = this
+    }
+  }
+</script>

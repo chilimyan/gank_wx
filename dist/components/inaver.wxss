@@ -1,0 +1,39 @@
+.inaver._d1ef455 {
+  box-sizing: border-box;
+  /*去掉顶部系统状态栏高度*/
+  padding-top: 44rpx;
+  width: 100vw;
+  height: 160rpx;
+  display: flex;
+  position: fixed;
+  z-index: 5000;
+  top: 0;
+  left: 0;
+}
+.inaver .left._d1ef455 {
+  width: 100rpx;
+  height: 100rpx;
+  margin: 8rpx;
+}
+.inaver .left image.icon._d1ef455 {
+  width: 60rpx;
+  height: 60rpx;
+  padding: 10rpx;
+  margin: 10rpx;
+}
+.inaver .center._d1ef455 {
+  height: 100rpx;
+  line-height: 100rpx;
+  flex: 1;
+  margin: 8rpx;
+}
+.inaver .right._d1ef455 {
+  width: 240rpx;
+  height: 100rpx;
+  margin: 8rpx;
+}
+.protect-inaver._d1ef455 {
+  box-sizing: border-box;
+  width: 100vw;
+  height: 160rpx;
+}

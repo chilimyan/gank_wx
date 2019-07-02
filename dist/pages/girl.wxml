@@ -1,0 +1,17 @@
+
+  <view class="container">
+    <view class="girl-view">
+      <block wx:for="{{listItem}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+        
+<view class="gank-list-item-container girlItem-view" bindtap="$girlItem$previewImage" data-com-index="{{index}}" data-wpypreviewimage-a="">
+        <image class="girl-image" src="{{item.url}}" mode="aspectFill">
+            <!-- <view class="bottom-view">
+                <text class="bottom-text">{{gitem.desc}}</text>
+            </view> -->
+        </image>
+    </view>
+    
+
+      </block>
+    </view>
+  </view>

@@ -1,0 +1,43 @@
+
+<style lang="less">
+  
+</style>
+<template>
+  <view class="container">
+    <!-- <web-view src="{{webUrl}}"></web-view> -->
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '详情'
+    }
+    components = {
+  
+    }
+
+    data = {
+      webUrl: ''
+    }
+
+    computed = {
+  
+    }
+
+    methods = {
+      
+    }
+
+    events = {
+      
+    }
+
+    async onLoad({webUrl}) {
+      this.webUrl = webUrl;
+    }
+  }
+</script>

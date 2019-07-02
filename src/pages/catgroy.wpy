@@ -1,0 +1,103 @@
+<style lang="less">
+  
+</style>
+<template>
+  <view class="container">
+    <view class="top-bar-view">
+      <catgoryBar/>
+    </view>
+    <view class="list-view">
+      <repeat for="{{listItem}}" key="index" index="index" item="item">
+        <gankListItem :gitem.sync="item" :timeStr="item.publishedAt"></gankListItem>
+      </repeat>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import catgoryBar from '../components/catoryBar';
+  import gankListItem from '../components/gankListItem';
+  import gankApi from '../api/gankAPI';
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '分类',
+      enablePullDownRefresh: true,
+      // 不配成dark的话三个加载中的点会看不到，其实是出来了，只是三个点是白色的，如果你的页面背景也是白的，那就看不出效果了
+      backgroundTextStyle: 'dark'
+    }
+    components = {
+      catgoryBar: catgoryBar,
+      gankListItem: gankListItem,
+    }
+
+    data = {
+      page: 1,
+      catoryId: 'all',
+      listItem: [],
+    }
+
+    computed = {
+  
+    }
+
+    methods = {
+      
+    }
+
+    events = {
+      'select': (currentId, event) => {
+        this.page = 1;
+        this.loadData(currentId, this.page);
+      }
+    }
+
+    onLoad() {
+      this.loadData(this.catoryId, this.page);
+    }
+
+    async loadData(catogry, page) {
+      let data = await gankApi.getCatoryNews(catogry, page);
+      var tempList = [];
+      for (var item of data.results) {
+          item.publishedAt = item.publishedAt.substring(0,10);
+          tempList.push(item);
+      }
+      if (page === 1) {
+        this.listItem = tempList;
+      }else {
+        for (var item of tempList) {
+          this.listItem.push(item);
+      }
+      }
+      console.log(this.listItem);
+      this.$apply();
+    }
+    onPullDownRefresh() {
+      console.log('下拉刷新列表');
+      this.page = + 1;
+      this.loadData(this.catoryId, this.page);
+    }
+    onReachBottom() {
+      console.log('上拉加载下一页')
+      this.page = this.page + 1;
+      this.loadData(this.catoryId, this.page);
+    }
+  }
+</script>
+
+<style>
+
+.top-bar-view {
+  position: fixed;
+  /* z-index: 10000; */
+}
+
+.list-view {
+  /* display: flex; */
+  margin-top: 88rpx;
+}
+
+</style>
+

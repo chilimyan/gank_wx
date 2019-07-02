@@ -1,0 +1,101 @@
+
+<template>
+  <view class="container">
+    <view class="girl-view">
+      <repeat for="{{listItem}}" key="index" index="index" item="item">
+        <girlItem :gitem.sync="item" :index.sync="index" class="girlItem-view"></girlItem>
+      </repeat>
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+  import girlItem from '../components/girlItem';
+  import gankApi from '../api/gankAPI';
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '妹纸',
+      enablePullDownRefresh: true,
+      // 不配成dark的话三个加载中的点会看不到，其实是出来了，只是三个点是白色的，如果你的页面背景也是白的，那就看不出效果了
+      backgroundTextStyle: 'dark'
+    }
+    components = {
+      girlItem: girlItem
+    }
+
+    data = {
+      listItem: [],
+      urlList: [],
+      page: 1,
+    }
+
+    computed = {
+  
+    }
+
+    methods = {
+
+    }
+
+    events = {
+      'previewImage': (index, event) => {
+        wx.previewImage({
+          current: '5',
+          urls: this.urlList,
+          success: (result)=>{
+            
+          },
+          fail: ()=>{},
+          complete: ()=>{}
+        });
+      }
+    }
+
+    onLoad() {
+      this.loadData(1);
+    }
+
+    async loadData(page) {
+      let data = await gankApi.getCatoryNews('福利', page);
+      var tempList = data.results;
+      if (page === 1) {
+        this.listItem = tempList;
+      }else {
+        for (var item of tempList) {
+          this.listItem.push(item);
+        }
+      }
+      for (var item of this.listItem){
+        this.urlList.push(item.url);
+      }
+      console.log(this.listItem);
+      this.$apply();
+    }
+
+    onPullDownRefresh() {
+      console.log('下拉刷新列表');
+      this.page = 1;
+      this.loadData(this.page);
+    }
+    onReachBottom() {
+      console.log('上拉加载下一页')
+      this.page = this.page + 1;
+      this.loadData(this.page);
+    }
+  }
+  
+</script>
+
+<style lang="less">
+  .girl-view {
+    display: grid;
+  }
+
+.girlItem-view {
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}
+
+</style>

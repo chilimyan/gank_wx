@@ -1,0 +1,8 @@
+@import "./../components/girlItem.wxss";
+.girl-view {
+  display: grid;
+}
+.girlItem-view {
+  margin-top: 20rpx;
+  margin-bottom: 10rpx;
+}

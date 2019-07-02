@@ -1,0 +1,47 @@
+<template>
+    <view class="gank-list-title-container">
+        <view class="tip-view"></view>
+        <text class="title-text">{{gitem.title}}</text>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class GankListTitleItem extends wepy.component {
+    props = {
+        gitem: {}
+    }
+    data = {
+        
+    }
+
+    onLoad() {
+    }
+}
+</script>
+
+<style>
+
+.gank-list-title-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+}
+.tip-view {
+    display: flex;
+    padding-left: 0rpx;
+    width: 10rpx;
+    background-color: #29ACBE;
+}
+
+.title-text {
+    display: flex;
+    padding-left: 20rpx;
+    font-size: 32rpx;
+    font-weight:bolder;
+}
+
+</style>

@@ -1,0 +1,110 @@
+
+  <view class="container">
+    
+  <view  wx:if="{{$inaver$getCompatibility}}" class="inaver _d1ef455" style="background:{{$inaver$background}};color:{{$inaver$getColor}}">
+    <view wx:if="{{$inaver$getSmartShowBack}}" class="left _d1ef455" catchtap="$inaver$goBack">
+      <image wx:if="{{$inaver$colorTheme=='black'}}" class="icon _d1ef455" src="../components/icon/back-black.png"/>
+      <image wx:else class="icon _d1ef455" src="../components/icon/back-white.png"/>
+    </view>
+    <view class="center _d1ef455">
+      <!-- 自定义区域 -->
+      <image class="left-image" src="/images/lishi.png" bindtap="selectDate" data-wpyselectdate-a=""/>
+      <text class="title">{{title}}</text>
+    </view>
+    <view wx:if="{{$inaver$protectCapsule}}" class="right _d1ef455">
+      <!-- 保护右上角胶囊不被污染 -->
+    </view>
+  </view>
+  <view  wx:if="{{$inaver$getCompatibility}}" class="protect-inaver _d1ef455">
+    <!-- 占据顶部位置， 伪padding板块 -->
+  </view>
+    <view  wx:if="{{showCalendar}}" class="calendar-view" catchtouchmove="catchtouchmove">
+      
+  <!-- <view class="wepy-com-calendar-root" catchtouchmove="catchtouchmove">
+    <view class="schedule-title">
+      <view class="day active" bindtap="goBackToday">今日</view>
+      <view class="year-month">
+        <picker class="picker" mode="date" fields="month" value="{{currYear}}-{{currMonth}}" bindchange="changePicker">
+          {{currYear}}年{{currMonth}}月
+        </picker>
+      </view>
+      <view class="add" bindtap="slotTap">
+        <slot name="slot"></slot>
+      </view>
+    </view>
+    <view style="overflow-x: hidden">
+      <view class="weeks">
+        <view class="day" wx:for="{{weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+          {{item}}
+        </view>
+      </view>
+      <view class="calendar-container {{addTransition ? 'transition' : ''}}"
+            style="transform: translateX({{translateX}})" bindtouchstart="touchS" bindtouchmove="touchM">
+        <view class="week" wx:for="{{panelDaysMatrix}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+          <view class="day" wx:for="{{item}}" wx:for-index="_idx" wx:for-item="_item" wx:key="_idx">
+            <view class="{{_item.type}} {{_item.active ? 'active' : ''}} {{_item.select ? 'select' : '' }}" bindtap="tapDayItem({{_item}}, {{idx}}, {{_idx}})">
+              {{_item.active ? '今' : _item.day}}
+            </view>
+            <view class="scheduleNum" wx:if="{{_item.scheduleNum}}">
+              {{_item.scheduleNum}}
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view> -->
+  <view class="wepy-com-calendar-root _2fecacc">
+    <view class="schedule-title _2fecacc">
+      <view class="day active _2fecacc" bindtap="$calendar$goBackToday">今日</view>
+      <view class="year-month _2fecacc">
+        <picker class="picker _2fecacc" mode="date" fields="month" value="{{$calendar$currYear}}-{{$calendar$currMonth}}" bindchange="$calendar$changePicker">
+          {{$calendar$currYear}}年{{$calendar$currMonth}}月
+        </picker>
+      </view>
+    </view>
+    <!-- <view>
+      <view class="weeks">
+        <view class="day" wx:for="{{weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+          {{item}}
+        </view>
+      </view>
+    </view> -->
+  </view>
+    </view>
+    <!-- <view class="calendar-view">
+      <calendar></calendar>
+    </view> -->
+    <view class="top-image-view"  wx:if="{{topImageUrl}}">
+      <image class="top-image" src="{{topImageUrl}}" mode="aspectFill"/>
+    </view>
+    <block wx:for="{{listItem}}" wx:for-index="index" wx:for-item="item" wx:key="index">
+      
+    <view class="gank-list-title-container" wx:if="{{item.title}}">
+        <view class="tip-view"/>
+        <text class="title-text">{{item.title}}</text>
+    </view>
+
+      <block wx:if="{{!item.title}}" wx:for="{{item}}" wx:for-index="index" wx:for-item="subItem" wx:key="index">
+        
+    <view class="gank-list-item-container">
+        <view class="gank-list-item-left">
+            <view class="top-text-view">
+                <text class="top-context">{{subItem.desc}}</text>
+            </view>
+            <view class="down-text-view row">
+                <text class="down-name">{{subItem.who}}</text>
+                <text class="down-time">{{subItem.publishedAt}}</text>
+            </view>
+            <view class="line-view"/>
+        </view>
+        <view class="gank-list-item-right"  wx:if="{{subItem.images}}">
+            <image class="mr20" src="{{subItem.images[0]}}" mode="aspectFill"/>
+        </view>
+    </view>
+
+      </block>
+    </block>
+    <!-- <view wx:if="{{showCalendar}}" class="calendar-view">
+      <calendar></calendar>
+    </view> -->
+  </view>

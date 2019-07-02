@@ -1,0 +1,66 @@
+<template>
+<view class="gank-list-item-container" @tap="previewImage()">
+        <image class="girl-image" src="{{gitem.url}}" mode="aspectFill">
+            <!-- <view class="bottom-view">
+                <text class="bottom-text">{{gitem.desc}}</text>
+            </view> -->
+        </image>
+    </view>
+    
+</template>
+
+<script>
+import wepy from 'wepy';
+import utils from '../utils/utils';
+
+export default class GirlListItem extends wepy.component {
+    props = {
+        gitem: {},
+        index: {},
+    }
+    data = {
+        
+    }
+
+    methods = {
+        previewImage() {
+            this.$emit('previewImage', this.index);
+            this.$apply();
+        }
+    }
+
+    onLoad() {
+    }
+}
+</script>
+
+<style>
+
+.gank-list-item-container {
+    display: flex;
+}
+.girl-image {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    /* border-radius: 20rpx; */
+    height: 500rpx;
+}
+
+.bottom-view {
+    display: flex;
+    justify-content: flex-start;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 10000;
+}
+
+.bottom-text {
+    font-size: 36rpx;
+    color: white;
+    font-weight: bolder;
+    padding: 14rpx;
+
+}
+
+</style>

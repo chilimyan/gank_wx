@@ -1,0 +1,14 @@
+@import "./../components/gankListItem.wxss";
+@import "./../components/catoryBar.wxss";
+
+
+.top-bar-view {
+  position: fixed;
+  /* z-index: 10000; */
+}
+
+.list-view {
+  /* display: flex; */
+  margin-top: 88rpx;
+}
+

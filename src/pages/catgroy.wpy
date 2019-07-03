@@ -3,7 +3,7 @@
 </style>
 <template>
   <view class="container">
-    <view class="top-bar-view">
+    <view class="top-bar-view" catchtouchmove="catchtouchmove">
       <catgoryBar/>
     </view>
     <view class="list-view">
@@ -43,7 +43,7 @@
     }
 
     methods = {
-      
+      catchtouchmove(){},
     }
 
     events = {

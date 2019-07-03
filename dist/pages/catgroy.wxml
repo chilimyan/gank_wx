@@ -1,6 +1,6 @@
 
   <view class="container">
-    <view class="top-bar-view">
+    <view class="top-bar-view" catchtouchmove="catchtouchmove">
       
     <view class="gank-list-title-container">
         

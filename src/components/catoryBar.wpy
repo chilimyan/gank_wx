@@ -46,7 +46,8 @@ export default class CatgoryBar extends wepy.component {
             this.currentId = id;
             this.$emit('select', this.currentId);
             this.$apply();
-        }
+        },
+        catchtouchmove(){},
     }
 }
 </script>

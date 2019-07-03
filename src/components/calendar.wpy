@@ -372,7 +372,7 @@
   }
 </script>
 <template>
-  <!-- <view class="wepy-com-calendar-root" catchtouchmove="catchtouchmove">
+  <view class="wepy-com-calendar-root">
     <view class="schedule-title">
       <view class="day active" @tap="goBackToday">今日</view>
       <view class="year-month">
@@ -380,17 +380,15 @@
           {{currYear}}年{{currMonth}}月
         </picker>
       </view>
-      <view class="add" @tap="slotTap">
-        <slot name="slot"></slot>
-      </view>
     </view>
-    <view style="overflow-x: hidden">
+    <view>
       <view class="weeks">
         <view class="day" wx:for="{{weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
           {{item}}
         </view>
       </view>
-      <view class="calendar-container {{addTransition ? 'transition' : ''}}"
+    </view>
+    <view class="calendar-container {{addTransition ? 'transition' : ''}}"
             style="transform: translateX({{translateX}})" @touchstart="touchS"
             @touchmove="touchM">
         <view class="week" wx:for="{{panelDaysMatrix}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
@@ -405,36 +403,19 @@
           </view>
         </view>
       </view>
-    </view>
-  </view> -->
-  <view class="wepy-com-calendar-root">
-    <view class="schedule-title">
-      <view class="day active" @tap="goBackToday">今日</view>
-      <view class="year-month">
-        <picker class="picker" mode="date" fields="month" value="{{currYear}}-{{currMonth}}" @change="changePicker">
-          {{currYear}}年{{currMonth}}月
-        </picker>
-      </view>
-    </view>
-    <!-- <view>
-      <view class="weeks">
-        <view class="day" wx:for="{{weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-          {{item}}
-        </view>
-      </view>
-    </view> -->
   </view>
 </template>
 
 <style lang="scss" scoped>
-  $primary: #DA251D;
-  $font-light: blue;
+  $primary: #29ACBE;
+  $font-light: #A9A9A9;
   $font-contrast: black;
   $f-14: 14px;
 
   .wepy-com-calendar-root {
     display: flex;
     flex-direction: column;
+    width: 750rpx;
   }
   .active {
     color: $primary;
@@ -450,7 +431,7 @@
     line-height: 20px;
     padding: 12px 16px 20px;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-around;
     color: $font-light;
     .add {
       font-size: 20px;
@@ -461,7 +442,6 @@
     width: 100%;
     box-sizing: border-box;
     display: flex;
-    background-color: red
   }
 
   .calendar-container.transition {
@@ -505,11 +485,11 @@
         box-sizing: border-box;
       }
       .pre, .next {
-        color: brown;
+        color: $font-light;
       }
     }
     view.day:first-child, view.day:last-child {
-      color: blueviolet;
+      color: $font-light;
     }
   }
 

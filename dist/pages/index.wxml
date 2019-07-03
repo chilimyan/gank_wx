@@ -20,39 +20,6 @@
   </view>
     <view  wx:if="{{showCalendar}}" class="calendar-view" catchtouchmove="catchtouchmove">
       
-  <!-- <view class="wepy-com-calendar-root" catchtouchmove="catchtouchmove">
-    <view class="schedule-title">
-      <view class="day active" bindtap="goBackToday">今日</view>
-      <view class="year-month">
-        <picker class="picker" mode="date" fields="month" value="{{currYear}}-{{currMonth}}" bindchange="changePicker">
-          {{currYear}}年{{currMonth}}月
-        </picker>
-      </view>
-      <view class="add" bindtap="slotTap">
-        <slot name="slot"></slot>
-      </view>
-    </view>
-    <view style="overflow-x: hidden">
-      <view class="weeks">
-        <view class="day" wx:for="{{weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-          {{item}}
-        </view>
-      </view>
-      <view class="calendar-container {{addTransition ? 'transition' : ''}}"
-            style="transform: translateX({{translateX}})" bindtouchstart="touchS" bindtouchmove="touchM">
-        <view class="week" wx:for="{{panelDaysMatrix}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
-          <view class="day" wx:for="{{item}}" wx:for-index="_idx" wx:for-item="_item" wx:key="_idx">
-            <view class="{{_item.type}} {{_item.active ? 'active' : ''}} {{_item.select ? 'select' : '' }}" bindtap="tapDayItem({{_item}}, {{idx}}, {{_idx}})">
-              {{_item.active ? '今' : _item.day}}
-            </view>
-            <view class="scheduleNum" wx:if="{{_item.scheduleNum}}">
-              {{_item.scheduleNum}}
-            </view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view> -->
   <view class="wepy-com-calendar-root _2fecacc">
     <view class="schedule-title _2fecacc">
       <view class="day active _2fecacc" bindtap="$calendar$goBackToday">今日</view>
@@ -62,18 +29,27 @@
         </picker>
       </view>
     </view>
-    <!-- <view>
-      <view class="weeks">
-        <view class="day" wx:for="{{weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+    <view class="_2fecacc">
+      <view class="weeks _2fecacc">
+        <view class="day _2fecacc"  wx:for="{{$calendar$weeks}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
           {{item}}
         </view>
       </view>
-    </view> -->
+    </view>
+    <view class="calendar-container {{$calendar$addTransition ? 'transition' : ''}} _2fecacc" style="transform: translateX({{$calendar$translateX}})" bindtouchstart="$calendar$touchS" bindtouchmove="$calendar$touchM">
+        <view class="week _2fecacc"  wx:for="{{$calendar$panelDaysMatrix}}" wx:for-index="idx" wx:for-item="item" wx:key="idx">
+          <view class="day _2fecacc" wx:for="{{item}}" wx:for-index="_idx" wx:for-item="_item" wx:key="_idx">
+            <view class="{{_item.type}} {{_item.active ? 'active' : ''}} {{_item.select ? 'select' : '' }} _2fecacc" bindtap="$calendar$tapDayItem" data-wpytapdayitem-a="{{_item}}" data-wpytapdayitem-b="{{idx}}" data-wpytapdayitem-c="{{_idx}}">
+              {{_item.active ? '今' : _item.day}}
+            </view>
+            <view class="scheduleNum _2fecacc" wx:if="{{_item.scheduleNum}}">
+              {{_item.scheduleNum}}
+            </view>
+          </view>
+        </view>
+      </view>
   </view>
     </view>
-    <!-- <view class="calendar-view">
-      <calendar></calendar>
-    </view> -->
     <view class="top-image-view"  wx:if="{{topImageUrl}}">
       <image class="top-image" src="{{topImageUrl}}" mode="aspectFill"/>
     </view>
@@ -104,7 +80,7 @@
 
       </block>
     </block>
-    <!-- <view wx:if="{{showCalendar}}" class="calendar-view">
-      <calendar></calendar>
-    </view> -->
+    <view class="tipNone"  wx:if="{{listItem.length == 0}}">
+      暂无干货～
+    </view>
   </view>

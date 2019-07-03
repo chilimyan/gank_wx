@@ -8,11 +8,8 @@
       <text class="title" slot="title">{{title}}</text>
     </inaver>
     <view wx:if="{{showCalendar}}" class="calendar-view" catchtouchmove="catchtouchmove">
-      <calendar></calendar>
+      <calendar @selectDay.user="selectDay"></calendar>
     </view>
-    <!-- <view class="calendar-view">
-      <calendar></calendar>
-    </view> -->
     <view class="top-image-view" wx:if="{{topImageUrl}}">
       <image class="top-image" src="{{topImageUrl}}" mode="aspectFill"/>
     </view>
@@ -22,9 +19,9 @@
         <gankListItem :gitem.sync="subItem" :timeStr="subItem.publishedAt"></gankListItem>
       </repeat>
     </repeat>
-    <!-- <view wx:if="{{showCalendar}}" class="calendar-view">
-      <calendar></calendar>
-    </view> -->
+    <view class="tipNone" wx:if="{{listItem.length == 0}}">
+      暂无干货～
+    </view>
   </view>
 </template>
 
@@ -35,6 +32,7 @@
   import gankListTitleItem from '../components/gankListTitleItem';
   import inaver from '../components/inaver';
   import calendar from '../components/calendar';
+  import utils from '../utils/utils';
 
   export default class Index extends wepy.page {
     config = {
@@ -57,7 +55,7 @@
     }
 
     computed = {
-  
+
     }
 
     methods = {
@@ -68,16 +66,27 @@
       selectDate() {
         this.showCalendar = !this.showCalendar;
       },
-      catchtouchmove(){}
+      catchtouchmove(){},
+      selectDay(dayItem) {
+        console.log(dayItem);
+        this.showCalendar = !this.showCalendar;
+        this.getData(dayItem.fullDate);
+      }
     }
 
     events = {
       
     }
 
-    async onLoad() {
-      let self = this;
-      let data = await gankApi.getTodayNews();
+    async getData(date) {
+      let data;
+      if(utils.isToday(date)) {
+        data = await gankApi.getTodayNews();
+      }else {
+        var d = new Date(date.replace(/-/g,"/"));
+        data = await gankApi.getDayNews(utils.dateFormate(d, "yyyy/MM/dd"));
+      } 
+      this.listItem = [];
       //数据处理
       var keys = [];
       for (var p in data.results) {
@@ -99,6 +108,18 @@
       }
     
       this.$apply();
+    }
+
+    onLoad() {
+      let self = this;
+      this.getData(utils.dateFormate(new Date(), "yyyy-MM-dd"));
+    }
+
+    onPageScroll() {
+      if(this.showCalendar) {
+        this.showCalendar = false;
+        this.$apply();
+      }
     }
   }
 </script>
@@ -137,6 +158,14 @@
   top: -20rpx;
   margin-left: 140rpx;
   position: relative;
+}
+
+.tipNone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: black;
 }
 
 .top-image-view {

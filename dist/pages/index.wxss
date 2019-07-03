@@ -38,6 +38,14 @@
   position: relative;
 }
 
+.tipNone {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28rpx;
+  color: black;
+}
+
 .top-image-view {
   display: flex;
 }

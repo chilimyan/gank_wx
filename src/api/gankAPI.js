@@ -13,6 +13,18 @@ export default class GankAPI extends baseAPI {
         });
         
     }
+
+    /**
+     * @Description: 获取某日数据
+     */
+    static getDayNews (date) {
+        const url = `${this.baseUrl}/api/day/${date}`;
+        return this.get(url, {}).then(data => {
+            console.log(data);
+            return data;
+        });
+        
+    }
     /**
      * @Description: 获取分类数据
      */

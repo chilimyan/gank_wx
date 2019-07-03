@@ -60,4 +60,17 @@ export default class Utils {
         }
         return fmt;
     }
+
+    /**
+     * @Description: 判断日期是否今天：isToday('2019-07-04')
+     */
+    static isToday(str){
+        var d = new Date(str.replace(/-/g,"/"));
+        var todaysDate = new Date();
+        if(d.setHours(0,0,0,0) == todaysDate.setHours(0,0,0,0)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }

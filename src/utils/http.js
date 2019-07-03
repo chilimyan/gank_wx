@@ -9,10 +9,13 @@ export default class Http {
             data: data
         }
         if(loading) {
-
+            progressHud.loading();
         }
         console.log(`[http]request url =${url}`);
         const res = await wepy.request(param);
+        if(loading) {
+            progressHud.loaded();
+        }
         if (this.isSuccess(res)) {
             return res.data;
         }else {

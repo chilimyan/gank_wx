@@ -3,7 +3,7 @@
   <view class="container">
     <view class="girl-view">
       <repeat for="{{listItem}}" key="index" index="index" item="item">
-        <girlItem :gitem.sync="item" :index.sync="index" class="girlItem-view"></girlItem>
+        <girlItem :gitem.sync="item" :index.sync="index" class="girlItem-view" @previewImage.user="previewImage"></girlItem>
       </repeat>
     </view>
   </view>
@@ -36,13 +36,9 @@
     }
 
     methods = {
-
-    }
-
-    events = {
-      'previewImage': (index, event) => {
+      previewImage(index) {
         wx.previewImage({
-          current: '5',
+          current: this.urlList[index],
           urls: this.urlList,
           success: (result)=>{
             
@@ -51,6 +47,10 @@
           complete: ()=>{}
         });
       }
+    }
+
+    events = {
+  
     }
 
     onLoad() {
@@ -67,7 +67,7 @@
           this.listItem.push(item);
         }
       }
-      for (var item of this.listItem){
+      for (var item of tempList){
         this.urlList.push(item.url);
       }
       console.log(this.listItem);

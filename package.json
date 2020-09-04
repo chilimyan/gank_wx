@@ -17,7 +17,7 @@
   "author": "Chilim <oncwnuG-QhxLc_BVJt54i2Qp4MdA@git.weixin.qq.com>",
   "license": "MIT",
   "dependencies": {
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.13.1",
     "wepy": "^1.6.0",
     "wepy-async-function": "^1.4.7",
     "wepy-com-toast": "^1.0.2"
